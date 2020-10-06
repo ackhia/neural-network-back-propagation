@@ -16,7 +16,9 @@ class Network():
     self.layers[0]['activations'] = input
     for i, layer in enumerate(self.layers[1:], 1):
       activations = np.dot(layer['weights'], self.layers[i-1]['activations'])
-      layer['activations'] = np.add(activations, layer['biases'])
+      activations_bias = np.add(activations, layer['biases'])
+      activations_bias_relu = activations_bias.clip(0, None)
+      layer['activations'] = activations_bias_relu
     
     return self.layers[-1]['activations']
 
