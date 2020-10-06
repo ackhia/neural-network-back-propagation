@@ -15,11 +15,10 @@ class Network():
   def predict(self, input):
     self.layers[0]['activations'] = input
     for i, layer in enumerate(self.layers[1:], 1):
-      activation_matrix = np.array([self.layers[i-1]['activations'],]*len(layer['activations'])).transpose()
-      activations = np.dot(layer['weights'], activation_matrix)
+      activations = np.dot(layer['weights'], self.layers[i-1]['activations'])
       layer['activations'] = np.add(activations, layer['biases'])
     
-    return self.layers[-1]['activations'][:,0]
+    return self.layers[-1]['activations']
 
 if __name__ == "__main__":
   n = Network([4, 2])
