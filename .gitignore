@@ -2,3 +2,4 @@
 VIRTUAL
 .vscode
 .DS_Store
+*.pyc
