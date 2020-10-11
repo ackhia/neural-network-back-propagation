@@ -1,8 +1,6 @@
 
 
 import struct
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 import numpy as np
 
 def chunk(l, n):
@@ -40,11 +38,14 @@ def get_data_set(type='training'):
   images_unpacked = struct.unpack('B' * image_count * width * height, images_bin[16:])
   images = chunk(images_unpacked, width * height)
 
-  data = [{'label': l, 'data': np.array(tuple(chunk(d, width)))} for (l, d) in zip(lables, images)]
+  data = [{'label': l, 'data': np.array(d) / 255} for (l, d) in zip(lables, images)]
   return data
 
 def display_image(image):
-  plt.imshow(image)
+  import matplotlib.pyplot as plt
+  import matplotlib.image as mpimg
+
+  plt.imshow(tuple(chunk(image, 28)))
   plt.show()
 
 if __name__ == '__main__':
