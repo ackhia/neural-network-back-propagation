@@ -20,7 +20,7 @@ pip install -r requirements.txt
 python simple.py
 ```
 
-### Handwriting detection
+### Handwriting recognition
 
 ```
 python handwriting.py
