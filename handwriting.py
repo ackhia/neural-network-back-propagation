@@ -16,7 +16,7 @@ if __name__ == '__main__':
   cost_before = n.cost(data_test)
   print(f'cost_before training={cost_before}')
 
-  n.train_network(data_training, 2)
+  n.train_network(data_training, 10)
 
   cost_after = n.cost(data_test)
   print(f'cost_after training={cost_after}')
