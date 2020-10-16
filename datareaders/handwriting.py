@@ -36,9 +36,9 @@ def get_data_set(type='training'):
   width = image_header[2]
   height = image_header[2]
   images_unpacked = struct.unpack('B' * image_count * width * height, images_bin[16:])
-  images = chunk(images_unpacked, width * height)
+  images = list(chunk(images_unpacked, width * height))
 
-  data = [{'label': l, 'data': np.array(d) / 255} for (l, d) in zip(lables, images)]
+  data = [np.concatenate((np.array(i) / 255, np.array([l]))) for (l, i) in zip(lables, images)]
   return data
 
 def display_image(image):
@@ -50,5 +50,5 @@ def display_image(image):
 
 if __name__ == '__main__':
   images = get_data_set()
-  print(images[0]['label'])
-  display_image(images[0]['data'])
+  print(images[0][-1])
+  display_image(images[0][:-1])
