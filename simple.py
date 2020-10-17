@@ -16,4 +16,4 @@ dataset = np.array([[2.7810836, 2.550537003, 0],
 if __name__ == "__main__":
     np.random.seed(0)
     n = Network([2, 2, 2])
-    n.train_network(dataset, 200)
+    n.train_network(dataset, 20)
